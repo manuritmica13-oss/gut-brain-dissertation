@@ -1,0 +1,6 @@
+if (!requireNamespace("remotes", quietly=TRUE)) install.packages("remotes", repos="https://cloud.r-project.org")
+remotes::install_github("SydneyBioX/PD16SData", quiet=TRUE)
+library(PD16Sdata)
+print(head(data_info))
+print(colnames(data_info))
+print(dim(data_info))

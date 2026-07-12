@@ -1,0 +1,21 @@
+name: qc_env
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.11
+  - qiime2=2024.8
+  - humann=3.0
+  - kneaddata=0.10.0
+  - r-mmuphin
+  - pandas
+  - numpy
+  - scikit-bio
+  - scipy
+  - matplotlib
+  - seaborn
+  - jupyterlab
+  - pip
+  - pip:
+    - qiime2==2024.8
