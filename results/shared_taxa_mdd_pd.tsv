@@ -1,0 +1,10 @@
+taxon	match_level	mdd_log2FC	pd_log2FC	direction
+Ruthenibacterium_lactatiformans	genus	1.03044379610453	1.25504643338222	elevated
+Ruthenibacterium_lactatiformans	species	1.03044379610453	1.25504643338222	elevated
+Streptococcus_sp._FDAARGOS_522	genus	23.8289316246303	0.373000391713505	elevated
+Roseburia_sp._NSJ-69	genus	-1.08821221320387	-0.623268364707677	depleted
+Blautia_hansenii	genus	-0.741939740862973	-0.85501465563455	depleted
+[Clostridium]_innocuum	genus	0.970263840435481	0.659721740230496	elevated
+Lactobacillus_amylovorus	genus	3.99540690202266	1.8070656254901	elevated
+Blautia_hansenii	genus	-0.741939740862973	-0.433831573480704	depleted
+Roseburia_intestinalis	species	-1.13758954075039	-1.0634488263843	depleted

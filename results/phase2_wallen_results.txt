@@ -1,0 +1,51 @@
+PERMANOVA (adonis2):
+Permutation test for adonis under reduced model
+Permutation: free
+Number of permutations: 999
+
+adonis2(formula = abund_mat ~ Case_status + Age + Sex + BMI, data = meta_f, permutations = 999, method = "bray")
+          Df SumOfSqs      R2      F Pr(>F)    
+Model      4    1.924 0.02955 5.4426  0.001 ***
+Residual 715   63.177 0.97045                  
+Total    719   65.101 1.00000                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+PERMDISP (betadisper) permutest:
+
+Permutation test for homogeneity of multivariate dispersions
+Permutation: free
+Number of permutations: 999
+
+Response: Distances
+           Df Sum Sq  Mean Sq      F N.Perm Pr(>F)    
+Groups      1 0.1955 0.195499 23.059    999  0.001 ***
+Residuals 718 6.0874 0.008478                         
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Top 20 DESeq2 results (by padj):
+taxa	p.value	mean_case	mean_control	padj	log2FC
+k__Bacteria|p__Actinobacteria|c__Actinobacteria|o__Actinomycetales|f__Actinomycetaceae|g__Actinomyces|s__Actinomyces_oris	6.60544314199281e-10	0.0245169795918367	0.00761434782608696	3.24328577254088e-07	1.68685826091031
+k__Bacteria|p__Firmicutes|c__Clostridia|o__Clostridiales|f__Ruminococcaceae|g__Ruthenibacterium	8.80530073992998e-10	1.20083755102041	0.503126434782609	3.24328577254088e-07	1.25504643338222
+k__Bacteria|p__Firmicutes|c__Clostridia|o__Clostridiales|f__Ruminococcaceae|g__Ruthenibacterium|s__Ruthenibacterium_lactatiformans	8.80530073992998e-10	1.20083755102041	0.503126434782609	3.24328577254088e-07	1.25504643338222
+k__Bacteria|p__Firmicutes|c__Clostridia|o__Clostridiales|f__Lachnospiraceae	1.23337027444986e-09	17.1949844081633	22.4819396086957	3.40718538316775e-07	-0.386778680709706
+k__Bacteria|p__Actinobacteria	7.8575829240362e-09	14.3560384693878	7.87222373913044	1.29779218669474e-06	0.866814481746954
+k__Bacteria|p__Firmicutes|c__Bacilli|o__Lactobacillales|f__Streptococcaceae|g__Streptococcus|s__Streptococcus_mutans	8.22130797001195e-09	0.0538142448979592	0.0415537826086957	1.29779218669474e-06	0.373000391713505
+k__Bacteria|p__Firmicutes|c__Clostridia|o__Clostridiales|f__Lachnospiraceae|g__Roseburia	6.35452288708626e-09	2.3959497755102	3.6906277826087	1.29779218669474e-06	-0.623268364707677
+k__Bacteria|p__Firmicutes|c__Clostridia|o__Clostridiales|f__Lachnospiraceae|g__Blautia|s__Blautia_wexlerae	1.1866639910937e-08	1.58442875510204	2.86587930434783	1.63907963769817e-06	-0.85501465563455
+k__Bacteria|p__Actinobacteria|c__Actinobacteria|o__Bifidobacteriales|f__Bifidobacteriaceae|g__Bifidobacterium|s__Bifidobacterium_dentium	1.97640133268766e-08	0.260638204081633	0.0867223043478261	2.42658163624429e-06	1.58756247070808
+k__Bacteria|p__Firmicutes|c__Bacilli|o__Lactobacillales|f__Lactobacillaceae	4.86143557034349e-08	1.01763951020408	0.268773347826087	5.37188630522956e-06	1.92076065053517
+k__Bacteria|p__Firmicutes|c__Clostridia|o__Clostridiales|f__Ruminococcaceae|g__Ruminococcaceae_unclassified|s__Clostridium_leptum	5.69970625160459e-08	0.207198204081633	0.131156173913043	5.7256140072937e-06	0.659721740230496
+k__Bacteria|p__Firmicutes|c__Bacilli|o__Lactobacillales|f__Lactobacillaceae|g__Lactobacillus	6.36345559745037e-08	0.93935487755102	0.268440217391304	5.85968202931888e-06	1.8070656254901
+k__Bacteria|p__Firmicutes|c__Clostridia	2.80846595134918e-07	33.8433031836735	40.7740610434783	2.21668205445775e-05	-0.268781261626894
+k__Bacteria|p__Firmicutes|c__Clostridia|o__Clostridiales	2.80846595134918e-07	33.8433031836735	40.7740610434783	2.21668205445775e-05	-0.268781261626894
+k__Bacteria|p__Firmicutes|c__Bacilli|o__Lactobacillales|f__Enterococcaceae|g__Enterococcus|s__Enterococcus_avium	8.13560720270627e-07	0.0455761632653061	0.000273782608695652	5.99323063932695e-05	7.37387662621864
+k__Bacteria|p__Firmicutes|c__Clostridia|o__Clostridiales|f__Ruminococcaceae|g__Ruminococcaceae_unclassified|s__Ruminococcaceae_bacterium_D5	1.67194604958759e-06	0.0626119591836735	0.0205521304347826	0.000115468774049643	1.60710314014602
+k__Bacteria|p__Firmicutes|c__Clostridia|o__Clostridiales|f__Lachnospiraceae|g__Blautia	1.92095719960525e-06	5.48510985714286	7.40937656521739	0.000124862217974341	-0.433831573480704
+k__Bacteria|p__Firmicutes|c__Clostridia|o__Clostridiales|f__Clostridiaceae|g__Clostridium	3.14981680817083e-06	0.584386632653061	0.795338	0.000183186714369935	-0.444644269384597
+k__Bacteria|p__Firmicutes|c__Clostridia|o__Clostridiales|f__Lachnospiraceae|g__Roseburia|s__Roseburia_intestinalis	3.01003379074588e-06	0.487246795918367	1.01830869565217	0.000183186714369935	-1.0634488263843
+k__Bacteria|p__Firmicutes|c__Bacilli|o__Lactobacillales|f__Enterococcaceae	5.56497102608279e-06	0.169410285714286	0.0620299565217391	0.000292823475420071	1.44946970959692
+
+KO Wilcoxon tests:
+No KOs found in humann table.

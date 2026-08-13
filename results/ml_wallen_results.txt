@@ -1,0 +1,13 @@
+RandomForest metrics:
+auprc	0.8533627754478312
+auroc	0.7168436293436293
+sensitivity	0.831081081081081
+specificity	0.38571428571428573
+confusion	(np.int64(27), np.int64(43), np.int64(25), np.int64(123))
+
+XGBoost metrics:
+not available in this environment
+
+Permutation null (AUPRC) summary:
+mean	0.6803970047855437
+std	0.046199459830759106
