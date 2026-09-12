@@ -31,7 +31,7 @@ try:
 except Exception:
     XGBOOST_AVAILABLE = False
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import precision_recall_curve, auc, roc_auc_score, confusion_matrix, recall_score
+from sklearn.metrics import precision_recall_curve, auc, roc_auc_score, confusion_matrix, recall_score, brier_score_loss
 from sklearn.preprocessing import LabelEncoder
 
 import shap
@@ -83,16 +83,65 @@ def prepare(feat: pd.DataFrame, meta: pd.DataFrame):
     y = (y == 'PD').astype(int)
     return X, y
 
+def find_optimal_threshold(y_true, y_prob):
+    """Return the probability threshold that maximizes Youden's J statistic."""
+    thresholds = np.unique(np.asarray(y_prob))
+    best_threshold = 0.5
+    best_j = -np.inf
+    best_sensitivity = np.nan
+    best_specificity = np.nan
+
+    for thr in thresholds:
+        y_pred = (y_prob >= thr).astype(int)
+        tn, fp, fn, tp = confusion_matrix(y_true, y_pred, labels=[0, 1]).ravel()
+        sensitivity = tp / (tp + fn) if (tp + fn) > 0 else 0.0
+        specificity = tn / (tn + fp) if (tn + fp) > 0 else 0.0
+        j = sensitivity + specificity - 1.0
+        if j > best_j:
+            best_j = j
+            best_threshold = float(thr)
+            best_sensitivity = sensitivity
+            best_specificity = specificity
+
+    return {
+        'threshold': best_threshold,
+        'sensitivity': best_sensitivity,
+        'specificity': best_specificity,
+        'youden_j': best_j,
+    }
+
+
 def evaluate_model(clf, X_test, y_test):
     y_prob = clf.predict_proba(X_test)[:,1]
-    y_pred = clf.predict(X_test)
+    y_pred_default = clf.predict(X_test)
     precision, recall, _ = precision_recall_curve(y_test, y_prob)
     auprc = auc(recall, precision)
     auroc = roc_auc_score(y_test, y_prob)
-    tn, fp, fn, tp = confusion_matrix(y_test, y_pred).ravel()
-    sensitivity = tp / (tp + fn) if (tp + fn) > 0 else np.nan
-    specificity = tn / (tn + fp) if (tn + fp) > 0 else np.nan
-    return {'auprc': auprc, 'auroc': auroc, 'sensitivity': sensitivity, 'specificity': specificity, 'confusion': (tn, fp, fn, tp)}
+    brier = brier_score_loss(y_test, y_prob)
+
+    tn, fp, fn, tp = confusion_matrix(y_test, y_pred_default, labels=[0, 1]).ravel()
+    default_sensitivity = tp / (tp + fn) if (tp + fn) > 0 else np.nan
+    default_specificity = tn / (tn + fp) if (tn + fp) > 0 else np.nan
+
+    opt = find_optimal_threshold(y_test, y_prob)
+    y_pred_opt = (y_prob >= opt['threshold']).astype(int)
+    tn_opt, fp_opt, fn_opt, tp_opt = confusion_matrix(y_test, y_pred_opt, labels=[0, 1]).ravel()
+    opt_sensitivity = tp_opt / (tp_opt + fn_opt) if (tp_opt + fn_opt) > 0 else np.nan
+    opt_specificity = tn_opt / (tn_opt + fp_opt) if (tn_opt + fp_opt) > 0 else np.nan
+
+    return {
+        'auprc': auprc,
+        'auroc': auroc,
+        'brier_score': brier,
+        'sensitivity_default_0.5': default_sensitivity,
+        'specificity_default_0.5': default_specificity,
+        'optimal_threshold': opt['threshold'],
+        'sensitivity_optimal_threshold': opt_sensitivity,
+        'specificity_optimal_threshold': opt_specificity,
+        'youden_j': opt['youden_j'],
+        'confusion_default_0.5': (tn, fp, fn, tp),
+        'confusion_optimal_threshold': (tn_opt, fp_opt, fn_opt, tp_opt),
+    }
 
 def permutation_null(clf_factory, X_train, y_train, X_test, y_test, niter=200, random_state=0):
     rng = np.random.RandomState(random_state)

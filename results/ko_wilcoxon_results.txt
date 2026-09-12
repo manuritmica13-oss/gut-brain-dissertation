@@ -1,0 +1,24 @@
+KO Wilcoxon rank-sum results
+===========================
+
+IDO1 (K00463)
+  column: K00463: indoleamine 2,3-dioxygenase [EC:1.13.11.52]
+  PD mean abundance (CPM): 2610.6717298065205
+  Control mean abundance (CPM): 4508.562416511727
+  Fold change (PD / Control): 0.5790474853459823
+  Wilcoxon statistic: 57075.0
+  p-value: 0.4513585776832114
+  Mann-Whitney effect size (rank-biserial): -0.004447933019361638
+  n_PD: 490
+  n_Control: 234
+
+KMO (K00486)
+  column: K00486: kynurenine 3-monooxygenase [EC:1.14.13.9]
+  PD mean abundance (CPM): 3511.7772497853166
+  Control mean abundance (CPM): 4038.446130496821
+  Fold change (PD / Control): 0.8695862557793456
+  Wilcoxon statistic: 57191.0
+  p-value: 0.7137298751244299
+  Mann-Whitney effect size (rank-biserial): -0.0024245595674167175
+  n_PD: 490
+  n_Control: 234

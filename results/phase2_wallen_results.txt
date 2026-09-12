@@ -49,3 +49,10 @@ k__Bacteria|p__Firmicutes|c__Bacilli|o__Lactobacillales|f__Enterococcaceae	5.564
 
 KO Wilcoxon tests:
 No KOs found in humann table.
+Alpha diversity results:
+Shannon: PD=3.500, Control=3.415, p<0.0001 (PD higher)
+Species richness: PD=200.1, Control=186.1, p<0.0001 (PD higher)
+Medication effect on Roseburia intestinalis in PD:
+Medicated PD: mean=0.4111, n=180
+Treatment-naive PD: mean=0.5237, n=297
+Mann-Whitney p=0.0029
